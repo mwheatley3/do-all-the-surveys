@@ -4,7 +4,8 @@
   "description": "coding challenge for SumoMe",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js"
+    "start": "nodemon server/index.js",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/mwheatley3/do-all-the-surveys#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "bower": "^1.7.9",
     "express": "^4.13.4",
     "nodemon": "^1.9.1"
   }

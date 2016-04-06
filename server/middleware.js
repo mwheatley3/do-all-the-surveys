@@ -1,0 +1,23 @@
+var bodyParser = require('body-parser');
+var Path = require('path');
+
+module.exports = function(app, express){
+
+	// var searchRouter = express.Router();
+	// var adminRouter = express.Router();
+	// var reportRouter = express.Router();
+
+	var assetFolder = Path.resolve(__dirname, '../client/');
+	app.use( express.static(assetFolder) );
+	app.use( bodyParser.json() );
+
+	// app.use('/api/indeed', searchRouter);
+	// app.use('/api/admin', adminRouter);
+	// app.use('/api/report', reportRouter);
+
+   // inject our routers into their respective route files
+  // require('./search/searchRouter.js')(searchRouter);
+  // require('./admin/adminRouter.js')(adminRouter);
+  // require('./report/reportRouter.js')(reportRouter);
+
+}

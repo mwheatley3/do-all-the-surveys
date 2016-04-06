@@ -1,0 +1,23 @@
+{
+  "name": "do-all-the-surveys",
+  "version": "1.0.0",
+  "description": "coding challenge for SumoMe",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwheatley3/do-all-the-surveys.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwheatley3/do-all-the-surveys/issues"
+  },
+  "homepage": "https://github.com/mwheatley3/do-all-the-surveys#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}

@@ -1,0 +1,12 @@
+<h1>Survey Question</h1>
+<form name="survey" ng-submit="respond()">
+	<h2>{{questionText}}</h2>
+	<div ng-repeat="a in answers">
+		<input type="radio" name="answer" ng-model="$parent.answer" ng-value="a"> {{a.answer_text}}<br>
+	</div>
+	<button>Save Answer</button>
+</form>
+
+<p>{{userId}}</p>
+
+<p>answer:{{answer}}</p>

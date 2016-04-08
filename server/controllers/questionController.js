@@ -27,7 +27,14 @@ QuestionController.saveQuestion = function(req, res) {
 QuestionController.getQuestion = function(req, res){
 	var user_id = req.query.user_id;
 	console.log('user_id', user_id);
-	models.Question.findOne({include:[models.Answer]})
+	models.Question.findOne({
+		where: {'id':{
+			$notIn: models.sequelize.literal('(select question_id from responses, answers' + 
+				' where responses.answer_id = answers.id and user_id = ' + user_id + ')')
+		}},
+		include:[{model: models.Answer
+		}]
+	})
 	.then(function(resp) {
 		console.log('q/a resp', resp);
 		res.send(resp);

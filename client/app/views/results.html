@@ -3,6 +3,10 @@
 <div>
   <p>Responses</p>
   <ul>
-    <li ng-repeat="q in questions">{{q}}</li>
+    <li ng-repeat="q in questions">{{q.question_text}}
+    	<ul>
+    		<li ng-repeat="a in q.answers">{{a.answer_text}}: {{a.count}}</li>
+    	</ul>
+    </li>
   </ul>
 </div>

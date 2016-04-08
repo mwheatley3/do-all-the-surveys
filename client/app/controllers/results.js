@@ -7,8 +7,7 @@ angular.module('myApp.results', [])
   	$scope.getResponses = function(){
   		Service.getResponses()
   		.then(function(resp){
-  			console.log('survey responses', resp);
-  			$scope.questions = resp;
+  			$scope.questions = resp.responses;
   		})
   	};
 

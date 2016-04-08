@@ -10,12 +10,6 @@ module.exports = function(sequelize, DataTypes){
 		underscored: true,
 		classMethods: {
       associate: function(models) {
-        // Response.belongsTo(models.Question, {
-        //   onDelete: "CASCADE",
-        //   foreignKey: {
-        //     allowNull: false
-        //   }
-        // });
         Response.belongsTo(models.Answer, {
           onDelete: "CASCADE",
           foreignKey: {

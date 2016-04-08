@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.survey', [])
-  .controller('SurveyCtrl', ['$scope','$http','Service', function($scope,$http,Service) {
+  .controller('SurveyCtrl', ['$scope','$http','$state','Service', function($scope,$http,$state,Service) {
     //implement sessions
     $scope.userId = localStorage.userId || 0;
     //definitely change to find or create
@@ -34,6 +34,10 @@ angular.module('myApp.survey', [])
         $scope.questionId = resp.id;
         $scope.questionText = resp.question_text;
         $scope.answers = resp.Answers;
+        if($scope.questionText === undefined) {
+          $scope.questionText = "all questions answered"
+        }
+        console.log('$scope.questionText', $scope.questionText);
         console.log('$scope.answers', $scope.answers);
       })
       .catch(function(error) {
@@ -49,6 +53,7 @@ angular.module('myApp.survey', [])
       Service.respond($scope.userId, $scope.questionId, $scope.answer.id)
       .then(function(resp) {
         console.log('user reposne', resp);
+        $state.reload();
       })
       .catch(function(error){
         console.error(error);

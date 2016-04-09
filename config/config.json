@@ -9,8 +9,7 @@
   "production": {
     "username": "b43832294b88a8",
     "password": "e8ea9106",
-    "database": "heroku_7fce895f61da312",
-    "host": "us-cdbr-iron-east-03.cleardb.net",
+    "database": "us-cdbr-iron-east-03.cleardb.net",
     "dialect": "mysql"
   }
 }

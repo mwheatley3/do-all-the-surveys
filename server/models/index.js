@@ -1,7 +1,9 @@
-
+var Path = require('path');
 
 var db        = {};
 var Sequelize = require('sequelize');
+var env       = process.env.NODE_ENV || "development";
+var config    = require(Path.join(__dirname, '../..', 'config', 'config.json'))[env];
 var sequelize = new Sequelize('sumo', 'root', '');
 
 db.Question = sequelize.import('./question.js');

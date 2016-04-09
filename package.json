@@ -26,3 +26,5 @@
     "sequelize": "^3.21.0"
   }
 }
+
+//mysql://b43832294b88a8:e8ea9106@us-cdbr-iron-east-03.cleardb.net/heroku_7fce895f61da312?reconnect=true

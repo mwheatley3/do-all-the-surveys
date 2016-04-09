@@ -16,8 +16,8 @@ AdminController.getResponses = function(req, res) {
 		include:[{model: models.Answer,
 			include:[{
 				model: models.Response
-			}
-			]}]
+			}]
+		}]
 	})
 	.then(function(resp){
 		resp.forEach(function(q){

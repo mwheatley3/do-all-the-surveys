@@ -1,0 +1,16 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "sumo",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "b43832294b88a8",
+    "password": "e8ea9106",
+    "database": "heroku_7fce895f61da312",
+    "host": "us-cdbr-iron-east-03.cleardb.net",
+    "dialect": "mysql"
+  }
+}

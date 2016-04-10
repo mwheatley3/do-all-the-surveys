@@ -4,11 +4,5 @@
     "password": null,
     "database": "sumo",
     "dialect": "mysql"
-  },
-  "production": {
-    "username": "b43832294b88a8",
-    "password": "e8ea9106",
-    "database": "us-cdbr-iron-east-03.cleardb.net",
-    "dialect": "mysql"
   }
 }

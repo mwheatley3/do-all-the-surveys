@@ -2,20 +2,35 @@ angular.module('myApp.services',[])
 
 .factory('Service', function($http, $window, $location){
 	var service = {};
+  service.authorized = false;
 
-  // service.login = function(user){
-  //   return $http({
-  //     method: 'POST',
-  //     url: '/api/admin/login',
-  //     data: user
-  //   })
-  //   .then(function(res){
-  //     return res.data;
-  //   })
-  //   .catch(function(error){
-  //     console.error('Error logging into the ADMIN page:', error);
-  //   })
-  // };
+  service.login = function(user){
+    return $http({
+      method: 'POST',
+      url: '/admin/login',
+      data: user
+    })
+    .then(function(res){
+      return res.data;
+    })
+    .catch(function(error){
+      console.error('Error logging into the ADMIN page:', error);
+    })
+  };
+
+  service.createAdmin = function(admin) {
+    return $http({
+      method: 'POST',
+      url: '/admin/create',
+      data: admin
+    })
+    .then(function(res) {
+      return res.data;
+    })
+    .catch(function(error) {
+      console.error('error creating new admin:', error);
+    })
+  }
 
   service.saveQuestion = function(question, answers) {
     return $http({

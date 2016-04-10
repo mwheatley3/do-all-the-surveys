@@ -7,7 +7,9 @@ angular.module('myApp', [
     'myApp.survey',
     'myApp.services',
     'myApp.results',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngAnimate',
+    'ngTouch'
   ])
 
     .config(function($stateProvider, $urlRouterProvider) {

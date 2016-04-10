@@ -1,6 +1,7 @@
 var AdminController = {};
 
 var models = require('../models/index.js');
+var bcrypt = require('bcrypt-nodejs');
 
 AdminController.getResponses = function(req, res) {
 	var responses = [{
@@ -33,57 +34,44 @@ AdminController.getResponses = function(req, res) {
 				})
 			})
 		})
-		console.log('!!!!!!!!!!!!!!!', resp);
-		console.log('responses', responses);
-		console.log('responses[1]', responses[1].answers);
-		console.log('responses[2]', responses[2].answers);
 		res.send({responses: responses});
 	})
-
-
-
-
-	// var responses = [];
-	// models.Question.findAll()
-	// .then(function(resp){
-	// 	resp.forEach(function(q){
-	// 		responses.push({
-	// 			question_text: q.dataValues.question_text,
-	// 			question_id: q.dataValues.quesiton_id
-	// 		});
-	// 	})
-	// 	return resp;
-	// })
-	// .then(function(resp){
-	// 	models.Answer.findAll()
-	// })
-	// models.Response.findAndCountAll({
-	// 	attributes: ['answer_id',
-	// 		models.sequelize.fn('count', models.sequelize.col('answer_id'))],
-	// 		group: ['answer_id']
-	// 	}
-	// )
-	// .then(function(resp) {
-	// 	console.log('resp', resp);
-	// 	res.send(resp);
-	// })
 };
 
-// QuestionController.getQuestion = function(req, res){
-// 	var user_id = req.query.user_id;
-// 	console.log('user_id', user_id);
-// 	models.Question.findOne({include:[models.Answer]})
-// 	.then(function(resp) {
-// 		console.log('q/a resp', resp);
-// 		res.send(resp);
-// 	})
-// }
+AdminController.login = function(req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+	models.Admin.findOne({
+		where: {
+			'username': username
+		}
+	})
+	.then(function(resp) {
+		var storedPassword = resp.dataValues.password;
+		if(bcrypt.compareSync(password, storedPassword)){
+			res.send({username: username});
+		} else {
+			res.send({error: 'incorrect password'});
+		}
+	})
+	.catch(function(resp) {
+		console.log('login catch', resp);
+	})
+};
+
+AdminController.createAdmin = function(req, res) {
+	var username = req.body.username;
+	var password = bcrypt.hashSync( req.body.password, bcrypt.genSaltSync(10) );
+	models.Admin.create({
+		username: username,
+		password: password
+	})
+	.then(function(resp) {
+		console.log('create admin', resp);
+	})
+};
+
 
 module.exports = AdminController;
 
 
- // Table.findAll({
- //   attributes: ['column1', 
- //     sequelize.fn('count', sequelize.col('column2'))], 
- //   group: ["Table.column1"]
- // }).then(function (result) { });

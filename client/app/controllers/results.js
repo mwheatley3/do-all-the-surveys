@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('myApp.results', [])
-  .controller('ResultsCtrl', ['$scope','$http','Service', function($scope,$http,Service) {
-  	$scope.questions = [];
+  .controller('ResultsCtrl', ['$scope','$http','$location','Service', function($scope,$http,$location,Service) {
+  	Service.authorized = localStorage.auth;
+    $scope.questions = [];
+    if(!Service.authorized) {
+      $location.path('/main');
+    };
 
   	$scope.getResponses = function(){
   		Service.getResponses()
@@ -12,5 +16,6 @@ angular.module('myApp.results', [])
   	};
 
   	$scope.getResponses();
+
 
   }]);

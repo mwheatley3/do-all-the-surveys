@@ -4,15 +4,7 @@ var models = require('../models/index.js');
 var bcrypt = require('bcrypt-nodejs');
 
 AdminController.getResponses = function(req, res) {
-	var responses = [{
-		question_id: 0,
-		question_text: '',
-		answers: [{
-			answer_id: 0,
-			answer_text: '',
-			count: 0
-		}]
-	}];
+	var responses = [];
 	models.Question.findAll({
 		include:[{model: models.Answer,
 			include:[{

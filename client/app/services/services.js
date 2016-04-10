@@ -2,7 +2,6 @@ angular.module('myApp.services',[])
 
 .factory('Service', function($http, $window, $location){
 	var service = {};
-  service.authorized = false;
 
   service.login = function(user){
     return $http({
@@ -11,12 +10,17 @@ angular.module('myApp.services',[])
       data: user
     })
     .then(function(res){
+      localStorage.setItem('auth', true);
       return res.data;
     })
     .catch(function(error){
       console.error('Error logging into the ADMIN page:', error);
     })
   };
+
+  service.logout = function(){
+    localStorage.removeItem('auth');
+  }
 
   service.createAdmin = function(admin) {
     return $http({

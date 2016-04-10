@@ -9,7 +9,6 @@ angular.module('myApp.survey', [])
       Service.createUser()
       .then(function(resp) {
         $scope.userId = resp.id;
-        console.log('create user reposnes: ', resp);
         localStorage.setItem('userId', $scope.userId);
         $scope.getQuestion($scope.userId);
       })
@@ -37,8 +36,6 @@ angular.module('myApp.survey', [])
         if($scope.questionText === undefined) {
           $scope.questionText = "all questions answered"
         }
-        console.log('$scope.questionText', $scope.questionText);
-        console.log('$scope.answers', $scope.answers);
       })
       .catch(function(error) {
         console.error(error);
@@ -52,7 +49,6 @@ angular.module('myApp.survey', [])
     $scope.respond = function() {
       Service.respond($scope.userId, $scope.questionId, $scope.answer.id)
       .then(function(resp) {
-        console.log('user reposne', resp);
         $state.reload();
       })
       .catch(function(error){

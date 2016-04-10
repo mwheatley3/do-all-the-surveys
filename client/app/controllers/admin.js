@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('myApp.admin', [])
-  .controller('AdminCtrl', ['$scope','$http','Service', function($scope,$http,Service) {
-    $scope.authorized = Service.authorized
+  .controller('AdminCtrl', ['$scope','$http','$state','$location', 'Service', function($scope,$http,$state,$location,Service) {
+    $scope.authorized = localStorage.auth;
   	$scope.errorMessage = '';
   	$scope.question = '';
     $scope.answers = [{
@@ -24,16 +24,19 @@ angular.module('myApp.admin', [])
   			if (resp.error) {
   				$scope.errorMessage = resp.error;
   			} else {
-  				Service.authorized = true;
-          $scope.authorized = Service.authorized;
+          $scope.authorized = true;
   				$scope.errorMessage = '';
-          localStorage.setItem('auth', true);
   			}
   		})
   		.catch(function(error) {
   			console.error('error when login attempted: ', error);
   		})
   	};
+
+    $scope.logout = function(){
+      Service.logout();
+      $location.path('/main');
+    }
 
     $scope.saveQuestion = function() {
       var len = $scope.answers.length - 1;
@@ -44,7 +47,7 @@ angular.module('myApp.admin', [])
       };
       Service.saveQuestion($scope.question, $scope.answers)
       .then(function(resp) {
-        return resp.data;
+        $state.reload();
       })
       .catch(function(error) {
         console.error(error);
@@ -53,6 +56,10 @@ angular.module('myApp.admin', [])
 
     $scope.addAnswer = function() {
       $scope.answers.push( {answerText: ''} );
+    };
+
+    $scope.removeAnswer = function() {
+      $scope.answers.pop();
     };
 
     $scope.createAdmin = function() {

@@ -1,43 +1,57 @@
-<h1>Admin Page</h1>
-<form name="loginForm" ng-submit="login()" ng-show="!authorized">
-	<fieldset>
-	  <input type="text" ng-model="user.username" required>
-	  <input type="password" ng-model="user.password" required>
+
+<div class="container-fluid">
+	<h1>Admin Page</h1>
+	<form class="form-signin" name="loginForm" ng-submit="login()" ng-show="!authorized">
+		<h2 class="form-signin-heading">Please sign in</h2>
+	  <input class="form-control" type="text" ng-model="user.username" placeholder="username" required>
+	  <input class="form-control" type="password" ng-model="user.password" placeholder="password" required>
 	  <br>
-	  <button ng-if="!!user.password && !!user.username">Login</button>
+	  <button class="btn btn-lg btn-primary" ng-if="!!user.password && !!user.username">Login</button>
 	  <p ng-if="!user.password || !user.username">Please Enter Your Credentails</p>
-	</fieldset>
-</form>
+	</form>
 
-<p ng-show="errorMessage">sign in error: {{errorMessage}}</p>
 
-<div ng-show="authorized">
+	<p ng-show="errorMessage">sign in error: {{errorMessage}}</p>
 
-	<form name="surveyQuestion" ng-submit="saveQuestion()">
-		<textarea ng-model="question" placeholder="Enter Question Text Here"></textarea>
-		<div ng-repeat="a in answers">
-			<textarea ng-model="a.answerText" cols="100"  placeholder="answer"></textarea>
+	<div ng-show="authorized">
+
+		<form class="form-horizontal" role="form" name="surveyQuestion" ng-submit="saveQuestion()">
+			<div class="form-group">
+				<textarea ng-model="question" placeholder="Enter Question Text Here"></textarea>
+			</div>
+			<div class="form-group" ng-repeat="a in answers">
+				<textarea ng-model="a.answerText"  placeholder="And Answer Text Here!"></textarea>
+			</div>
+			<button class="btn btn-lg btn-primary">Save Question</button>
+			<button class="btn btn-lg btn-info" ng-click="addAnswer()" type="button">Add Answer</button>
+			<button class="btn btn-lg btn-info" ng-click="removeAnswer()" type="button">Remove Answer</button>
+		</form>
+
+		<br/>
+		<br/>
+
+		<div>
+	  	<a href="#/results">
+	  	  <button class="btn btn-lg btn-success">view survey results</button>
+	  	</a>
 		</div>
-		<button>Save Question</button>
-	</form>
 
-	<div>
-		<button class="btn" ng-click="addAnswer()">Add Answer</button>
-	</div>
+		<br/>
+		<br/>
 
-	 <div>
-  	<a href="#/results">
-  	  <button class="btn">view survey results</button>
-  	</a>
-	</div>
-
-	<form name="createAdminForm" ng-submit="createAdmin()">
-		<fieldset>
-		  <input type="text" ng-model="admin.username" required>
-		  <input type="password" ng-model="admin.password" required>
+		<form class="form-horizontal" name="createAdminForm" ng-submit="createAdmin()">
+		  <input class="form-control" type="text" ng-model="admin.username" placeholder="username" required>
+		  <input class="form-control" type="password" ng-model="admin.password" placeholder="password" required>
 		  <br>
-		  <button>Create New Admin</button>
-		</fieldset>
-	</form>
+		  <button class="btn btn-lg btn-primary">Create New Admin</button>
+		</form>
 
+		<br/>
+		<br/>
+
+		<div>
+			<button class="btn btn-lg btn-danger" ng-click="logout()">Logout</button>
+		</div>
+
+	</div>
 </div>

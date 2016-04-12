@@ -1,40 +1,32 @@
 'use strict';
 
 angular.module('myApp.admin', [])
-  .controller('AdminCtrl', ['$scope','$http','$state','$location', 'Service', function($scope,$http,$state,$location,Service) {
-    $scope.authorized = localStorage.auth;
-  	$scope.errorMessage = '';
-  	$scope.question = '';
-    $scope.answers = [{
-      answerText: ''
-    },{
-      answerText: ''
-    }];
-  	$scope.user = {
-  		username: '',
-  		password: ''
-  	};
+  .controller('AdminCtrl', ['$scope','$http','$location','Service','Auth', function($scope,$http,$location,Service, Auth) {
+    $scope.questions = [];
     $scope.admin = {
       username: '',
       password: ''      
     };
-  	$scope.login = function() {
-  		Service.login($scope.user)
-  		.then(function(resp){
-  			if (resp.error) {
-  				$scope.errorMessage = resp.error;
-  			} else {
-          $scope.authorized = true;
-  				$scope.errorMessage = '';
-  			}
-  		})
-  		.catch(function(error) {
-  			console.error('error when login attempted: ', error);
-  		})
+    $scope.question = '';
+    $scope.answers = [{
+        answerText: ''
+      },{
+        answerText: ''
+    }];
+
+  	$scope.getResponses = function(){
+      if($scope.questions.length) {
+        $scope.questions = [];
+      } else {
+    		Service.getResponses()
+    		.then(function(resp){
+    			$scope.questions = resp.responses;
+    		})
+      }
   	};
 
     $scope.logout = function(){
-      Service.logout();
+      Auth.logout();
       $location.path('/main');
     }
 
@@ -63,8 +55,11 @@ angular.module('myApp.admin', [])
     };
 
     $scope.createAdmin = function() {
-      Service.createAdmin($scope.admin)
+      Auth.createAdmin($scope.admin)
       .then(function(resp) {
+        $scope.admin.username = '';
+        $scope.admin.password = '';
+        $scope.adminCreated = true;
         console.log('admin created');
       })
       .catch(function(error) {

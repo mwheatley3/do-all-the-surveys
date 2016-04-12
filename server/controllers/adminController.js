@@ -2,7 +2,7 @@ var AdminController = {};
 
 var models = require('../models/index.js');
 var bcrypt = require('bcrypt-nodejs');
-
+var jwt = require('jwt-simple');
 AdminController.getResponses = function(req, res) {
 	var responses = [];
 	models.Question.findAll({
@@ -41,7 +41,8 @@ AdminController.login = function(req, res) {
 	.then(function(resp) {
 		var storedPassword = resp.dataValues.password;
 		if(bcrypt.compareSync(password, storedPassword)){
-			res.send({username: username});
+			var token = jwt.encode;
+			res.json({token: token});
 		} else {
 			res.send({error: 'incorrect password'});
 		}
@@ -59,7 +60,10 @@ AdminController.createAdmin = function(req, res) {
 		password: password
 	})
 	.then(function(resp) {
-		console.log('create admin', resp);
+		res.send(200);
+	})
+	.catch(function(err) {
+		console.error('error creating new admin: ', err);
 	})
 };
 

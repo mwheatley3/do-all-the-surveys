@@ -3,39 +3,6 @@ angular.module('myApp.services',[])
 .factory('Service', function($http, $window, $location){
 	var service = {};
 
-  service.login = function(user){
-    return $http({
-      method: 'POST',
-      url: '/admin/login',
-      data: user
-    })
-    .then(function(res){
-      localStorage.setItem('auth', true);
-      return res.data;
-    })
-    .catch(function(error){
-      console.error('Error logging into the ADMIN page:', error);
-    })
-  };
-
-  service.logout = function(){
-    localStorage.removeItem('auth');
-  }
-
-  service.createAdmin = function(admin) {
-    return $http({
-      method: 'POST',
-      url: '/admin/create',
-      data: admin
-    })
-    .then(function(res) {
-      return res.data;
-    })
-    .catch(function(error) {
-      console.error('error creating new admin:', error);
-    })
-  }
-
   service.saveQuestion = function(question, answers) {
     return $http({
       method: 'POST',
@@ -47,12 +14,10 @@ angular.module('myApp.services',[])
     })
     .catch(function(error){
       console.log('Error posting question', error);
-    })
+    });
   };
 
   service.getQuestion = function(userId) {
-    console.log('get question');
-    console.log('userId', userId);
     return $http({
       method: 'GET',
       url: '/user/question/?user_id=' + userId
@@ -62,8 +27,8 @@ angular.module('myApp.services',[])
     })
     .catch(function(error) {
       console.log('Error getting quesiton', error);
-    })
-  }
+    });
+  };
 
   service.createUser = function() {
     return $http({
@@ -72,12 +37,11 @@ angular.module('myApp.services',[])
       data: {}
     })
     .then(function(res) {
-      console.log('res', res);
       return res.data;
     })
     .catch(function(error) {
       console.log('Error creating user', error);
-    })    
+    });    
   }
 
   service.respond = function(userId, questionId, answerId) {
@@ -92,7 +56,7 @@ angular.module('myApp.services',[])
     .catch(function(error) {
       console.log('Error saving response', error);
     })
-  }
+  };
 
   service.getResponses = function() {
     console.log('service get responses');
@@ -106,8 +70,48 @@ angular.module('myApp.services',[])
     .catch(function(error) {
       console.log('Error saving response', error);
     })
-  }
+  };
 	
 	return service;
 
+})
+.factory('Auth', function($http, $window, $location){
+  var auth = {};
+  auth.login = function(user){
+    return $http({
+      method: 'POST',
+      url: '/admin/login',
+      data: user
+    })
+    .then(function(res){
+      return res.data;
+    })
+    .catch(function(error){
+      console.error('Error logging into the ADMIN page:', error);
+    })
+  };
+
+  auth.logout = function(){
+    sessionStorage.removeItem('eHonda');
+  };
+
+  auth.isAuth = function(){
+    return !!sessionStorage.getItem('eHonda');
+  }
+
+  auth.createAdmin = function(admin) {
+    return $http({
+      method: 'POST',
+      url: '/admin/create',
+      data: admin
+    })
+    .then(function(res) {
+      console.log('CREat admin service')
+      return res.data;
+    })
+    .catch(function(error) {
+      console.error('error creating new admin:', error);
+    })
+  };
+  return auth;
 })

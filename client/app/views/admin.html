@@ -1,33 +1,23 @@
 <h1>Admin Page</h1>
-
-<!-- <div>
-  <p>Responses</p>
-  <ul>
-    <li ng-repeat="q in questions">{{q.question_text}}
-    	<ul>
-    		<li ng-repeat="a in q.answers">{{a.answer_text}}: {{a.count}}</li>
-    	</ul>
-    </li>
-  </ul>
-</div> -->
-
-<form class="form-horizontal" role="form" name="surveyQuestion" ng-submit="saveQuestion()">
-	<div class="form-group">
-		<textarea ng-model="question" placeholder="Enter Question Text Here"></textarea>
-	</div>
-	<div class="form-group" ng-repeat="a in answers">
-		<textarea ng-model="a.answerText"  placeholder="And Answer Text Here!"></textarea>
-	</div>
-	<button class="btn btn-lg btn-primary">Save Question</button>
-	<button class="btn btn-lg btn-info" ng-click="addAnswer()" type="button">Add Answer</button>
-	<button class="btn btn-lg btn-info" ng-click="removeAnswer()" type="button">Remove Answer</button>
-</form>
+<div class="container-fluid">
+	<form class="form-horizontal" role="form" name="surveyQuestion" ng-submit="saveQuestion()">
+		<div class="form-group">
+			<textarea ng-model="question" placeholder="Enter Question Text Here"></textarea>
+		</div>
+		<div class="form-group" ng-repeat="a in answers">
+			<textarea ng-model="a.answerText"  placeholder="And Answer Text Here!"></textarea>
+		</div>
+		<button class="btn btn-lg btn-primary">Save Question</button>
+		<button class="btn btn-lg btn-info" ng-click="addAnswer()" type="button">Add Answer</button>
+		<button class="btn btn-lg btn-info" ng-click="removeAnswer()" type="button">Remove Answer</button>
+	</form>
+</div>
 
 <br/>
 <br/>
 
 <div>
-	  <button class="btn btn-lg btn-success" ng-click="getResponses()">toggle results</button>
+	  <button class="btn btn-lg btn-success" ng-click="getResponses()">Toggle Results</button>
 </div>
 
 <br/>
@@ -54,6 +44,7 @@
 </div>
 
 <form class="form-horizontal" name="createAdminForm" ng-submit="createAdmin()">
+	<h3 class="form-signin-heading">Create A New Admin</h3>
   <input class="form-control" type="text" ng-model="admin.username" placeholder="username" required>
   <input class="form-control" type="password" ng-model="admin.password" placeholder="password" required>
   <br>

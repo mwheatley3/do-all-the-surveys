@@ -26,7 +26,6 @@ QuestionController.saveQuestion = function(req, res) {
 
 QuestionController.getQuestion = function(req, res){
 	var user_id = req.query.user_id;
-	console.log('user_id', user_id);
 	models.Question.findOne({
 		where: {'id':{
 			$notIn: models.sequelize.literal('(select question_id from responses, answers' + 
@@ -36,7 +35,6 @@ QuestionController.getQuestion = function(req, res){
 		}]
 	})
 	.then(function(resp) {
-		console.log('q/a resp', resp);
 		res.send(resp);
 	})
 	

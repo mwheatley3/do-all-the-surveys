@@ -39,15 +39,19 @@ AdminController.login = function(req, res) {
 		}
 	})
 	.then(function(resp) {
+		if(!resp) {
+			res.send({'error': 'user does not exist'});
+		}
 		var storedPassword = resp.dataValues.password;
 		if(bcrypt.compareSync(password, storedPassword)){
 			var token = jwt.encode;
-			res.json({token: token});
+			res.send({token: token});
 		} else {
 			res.send({error: 'incorrect password'});
 		}
 	})
 	.catch(function(resp) {
+		res.send({error: resp});
 		console.log('login catch', resp);
 	})
 };

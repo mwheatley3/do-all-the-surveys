@@ -2,24 +2,20 @@
 
 angular.module('myApp.survey', [])
   .controller('SurveyCtrl', ['$scope','$http','$state','Service', function($scope,$http,$state,Service) {
-    //implement sessions
-    $scope.userId = localStorage.userId || 0;
-    //definitely change to find or create
-    $scope.createUser = function() {
-      Service.createUser()
+
+    $scope.userId = localStorage.eHondaUserId || 0;
+
+    $scope.findOrCreateUser = function() {
+      Service.findOrCreateUser($scope.userId)
       .then(function(resp) {
-        $scope.userId = resp.id;
-        localStorage.setItem('userId', $scope.userId);
+        console.log('user resp', resp);
+        $scope.userId = resp[0].id;
+        localStorage.setItem('eHondaUserId', $scope.userId);
         $scope.getQuestion($scope.userId);
       })
       .catch(function(error) {
         console.error(error);
       })
-    };
-
-    if (!$scope.userId) {
-      console.log('here');
-      $scope.createUser();
     };
 
   	$scope.questionText = '';
@@ -29,11 +25,11 @@ angular.module('myApp.survey', [])
     $scope.getQuestion = function(userId) {
       Service.getQuestion(userId)
       .then(function(resp) {
-        console.log('get question',resp);
+        console.log('q/a response', resp);
         $scope.questionId = resp.id;
         $scope.questionText = resp.question_text;
         $scope.answers = resp.Answers;
-        if($scope.questionText === undefined) {
+        if(!$scope.questionText) {
           $scope.questionText = "all questions answered"
         }
       })
@@ -42,12 +38,10 @@ angular.module('myApp.survey', [])
       })
     };
 
-    $scope.getQuestion($scope.userId);
-
-    $scope.answer = {};//change the name of this variable
+    $scope.userResponse = {};
 
     $scope.respond = function() {
-      Service.respond($scope.userId, $scope.questionId, $scope.answer.id)
+      Service.respond($scope.userId, $scope.questionId, $scope.userResponse.id)
       .then(function(resp) {
         $state.reload();
       })
@@ -55,5 +49,7 @@ angular.module('myApp.survey', [])
         console.error(error);
       })
     }
+
+    $scope.findOrCreateUser();
     
   }]);

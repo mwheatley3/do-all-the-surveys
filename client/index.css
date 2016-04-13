@@ -5,3 +5,8 @@ textarea {
 td {
 	text-align: left;
 }
+
+.form-group {
+	width: 95%;
+	margin: auto;
+}

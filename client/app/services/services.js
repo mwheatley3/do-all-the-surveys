@@ -30,11 +30,11 @@ angular.module('myApp.services',[])
     });
   };
 
-  service.createUser = function() {
+  service.findOrCreateUser = function(userId) {
     return $http({
       method: 'POST',
-      url: '/user/create',
-      data: {}
+      url: '/user/findOrCreate',
+      data: {userId: userId}
     })
     .then(function(res) {
       return res.data;

@@ -13,6 +13,8 @@ angular.module('myApp.auth', [])
   		.then(function(resp){
   			if (resp.error) {
   				$scope.errorMessage = resp.error;
+          $scope.user.username = '';
+          $scope.user.password = '';
   			} else {
           sessionStorage.setItem('eHonda', resp.token);
           $location.path('/admin');

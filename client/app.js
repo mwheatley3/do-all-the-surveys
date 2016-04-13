@@ -48,21 +48,7 @@ angular.module('myApp', [
       data: {
         requireLogin: true
       }
-    });
-
-    $httpProvider.interceptors.push('AttachToken');
-        
-})
-.factory('AttachToken', function() {
-  var attach = {};
-  attach.request = function(object) {
-    var jwt = sessionStorage.getItem('eHonda');
-    if(jwt) {
-      object.headers['x-access-token'] = jwt;
-    }
-    return object;
-  }
-  return attach;
+    }); 
 })
 .run(function($rootScope, $location, Auth) {
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams) {
@@ -71,5 +57,5 @@ angular.module('myApp', [
       event.preventDefault();
       $location.path('/main');
     }
-  })
+  });
 });

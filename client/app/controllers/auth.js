@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('myApp.auth', [])
-  .controller('AuthCtrl', ['$scope','$http','$state','$location', 'Service','Auth', function($scope,$http,$state,$location,Service, Auth) {
+  .controller('AuthCtrl', ['$scope','$http','$state','$location','Service','Auth', function($scope,$http,$state,$location,Service, Auth) {
   	$scope.errorMessage = '';
-
   	$scope.user = {
   		username: '',
   		password: ''
@@ -22,7 +21,8 @@ angular.module('myApp.auth', [])
   		})
   		.catch(function(error) {
   			console.error('error when login attempted: ', error);
-  		})
+  		});
   	};
 
   }]);
+  

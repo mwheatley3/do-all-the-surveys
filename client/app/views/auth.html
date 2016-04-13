@@ -2,7 +2,7 @@
 <div class="container-fluid">
 	<h1>Login Page</h1>
 	<form class="form-signin" name="loginForm" ng-submit="login()" ng-show="!authorized">
-		<h2 class="form-signin-heading">Please sign in</h2>
+		<h2 class="form-signin-heading">Please Sign In</h2>
 	  <input class="form-control" type="text" ng-model="user.username" placeholder="username" required>
 	  <input class="form-control" type="password" ng-model="user.password" placeholder="password" required>
 	  <br>
@@ -11,5 +11,5 @@
 	</form>
 
 
-	<p ng-show="errorMessage">sign in error: {{errorMessage}}</p>
+	<p ng-show="errorMessage">Sign In Error: {{errorMessage}}</p>
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('myApp.admin', [])
-  .controller('AdminCtrl', ['$scope','$http','$location','Service','Auth', function($scope,$http,$location,Service, Auth) {
+  .controller('AdminCtrl', ['$scope','$http','$location','$state','Service','Auth', function($scope,$http,$location,$state,Service, Auth) {
     $scope.questions = [];
     $scope.admin = {
       username: '',
@@ -10,22 +10,22 @@ angular.module('myApp.admin', [])
     $scope.question = '';
     $scope.answers = [{
         answerText: ''
-      },{
+      }, {
         answerText: ''
     }];
 
-  	$scope.getResponses = function(){
+  	$scope.getResponses = function() {
       if($scope.questions.length) {
         $scope.questions = [];
       } else {
     		Service.getResponses()
     		.then(function(resp){
     			$scope.questions = resp.responses;
-    		})
+    		});
       }
   	};
 
-    $scope.logout = function(){
+    $scope.logout = function() {
       Auth.logout();
       $location.path('/main');
     }
@@ -43,7 +43,7 @@ angular.module('myApp.admin', [])
       })
       .catch(function(error) {
         console.error(error);
-      })
+      });
     };
 
     $scope.addAnswer = function() {
@@ -64,7 +64,8 @@ angular.module('myApp.admin', [])
       })
       .catch(function(error) {
         console.error(error);
-      })
+      });
     };
 
   }]);
+  

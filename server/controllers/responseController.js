@@ -9,7 +9,7 @@ ResponseController.respond = function(req, res) {
 	models.Response.create({user_id: userId, question_id: questionId, answer_id: answerId})
 	.then(function(resp) {
 		res.send(resp);
-	})
+	});
 };
 
 module.exports = ResponseController;

@@ -17,13 +17,14 @@
 <br/>
 
 <div>
-	  <button class="btn btn-lg btn-success" ng-click="getResponses()">Toggle Results</button>
+	  <button class="btn btn-lg btn-success" ng-click="getResponses()">Toggle Survey Results</button>
 </div>
 
 <br/>
 <br/>
 
 <div class="container-fluid" ng-show="questions.length > 0">
+	<div class="visible-xs visible-sm">Rotate For Better Viewing!</div>
 	<div class="table-responsive">
 	  <table class="table table-striped" ng-repeat="q in questions">
 	    <thead>

@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes){
+module.exports = function(sequelize, DataTypes) {
 	var Response =  sequelize.define('Response', {
 	  response_id: {
       primaryKey: true,

@@ -4,11 +4,12 @@ var db        = {};
 var Sequelize = require('sequelize');
 var env       = process.env.NODE_ENV || "development";
 var config    = require(Path.join(__dirname, '../..', 'config', 'config.json'))[env];
+var sequelize;
 
 if (env === "development") {
-	var sequelize = new Sequelize(config.database, config.username, config.password);
+	sequelize = new Sequelize(config.database, config.username, config.password);
 } else {
-	var sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+	sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 }
 
 db.Question = sequelize.import('./question.js');
@@ -25,8 +26,7 @@ Object.keys(db).forEach(function(modelName) {
 });
 
 Object.keys(db).forEach(function(modelName){
-  db[modelName].sync().then(function() {
-  })
+  db[modelName].sync().then(function() {});
 });
 
 db.sequelize = sequelize;

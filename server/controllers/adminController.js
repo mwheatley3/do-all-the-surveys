@@ -12,22 +12,22 @@ AdminController.getResponses = function(req, res) {
 			}]
 		}]
 	})
-	.then(function(resp){
-		resp.forEach(function(q){
+	.then(function(resp) {
+		resp.forEach(function(q) {
 			responses.push({
 				question_id: q.dataValues.id,
 				question_text: q.dataValues.question_text,
-				answers: q.dataValues.Answers.map(function(a){
+				answers: q.dataValues.Answers.map(function(a) {
 					return {
 						answer_id: a.dataValues.id,
 						answer_text: a.dataValues.answer_text,
 						count: a.dataValues.Responses.length
 					};
 				})
-			})
-		})
+			});
+		});
 		res.send({responses: responses});
-	})
+	});
 };
 
 AdminController.login = function(req, res) {
@@ -39,11 +39,11 @@ AdminController.login = function(req, res) {
 		}
 	})
 	.then(function(resp) {
-		if(!resp) {
+		if (!resp) {
 			res.send({'error': 'user does not exist'});
 		}
 		var storedPassword = resp.dataValues.password;
-		if(bcrypt.compareSync(password, storedPassword)){
+		if (bcrypt.compareSync(password, storedPassword)) {
 			var token = jwt.encode;
 			res.send({token: token});
 		} else {
@@ -53,7 +53,7 @@ AdminController.login = function(req, res) {
 	.catch(function(resp) {
 		res.send({error: resp});
 		console.log('login catch', resp);
-	})
+	});
 };
 
 AdminController.createAdmin = function(req, res) {
@@ -68,10 +68,7 @@ AdminController.createAdmin = function(req, res) {
 	})
 	.catch(function(err) {
 		console.error('error creating new admin: ', err);
-	})
+	});
 };
 
-
 module.exports = AdminController;
-
-

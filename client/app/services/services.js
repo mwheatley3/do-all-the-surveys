@@ -1,6 +1,6 @@
 angular.module('myApp.services',[])
 
-.factory('Service', function($http, $window, $location){
+.factory('Service', function($http, $window, $location) {
 	var service = {};
 
   service.saveQuestion = function(question, answers) {
@@ -26,7 +26,7 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error) {
-      console.log('Error getting quesiton', error);
+      console.log('Error getting question', error);
     });
   };
 
@@ -75,27 +75,27 @@ angular.module('myApp.services',[])
 	return service;
 
 })
-.factory('Auth', function($http, $window, $location){
+.factory('Auth', function($http, $window, $location) {
   var auth = {};
-  auth.login = function(user){
+  auth.login = function(user) {
     return $http({
       method: 'POST',
       url: '/admin/login',
       data: user
     })
-    .then(function(res){
+    .then(function(res) {
       return res.data;
     })
-    .catch(function(error){
+    .catch(function(error) {
       console.error('Error logging into the ADMIN page:', error);
     })
   };
 
-  auth.logout = function(){
+  auth.logout = function() {
     sessionStorage.removeItem('eHonda');
   };
 
-  auth.isAuth = function(){
+  auth.isAuth = function() {
     return !!sessionStorage.getItem('eHonda');
   }
 

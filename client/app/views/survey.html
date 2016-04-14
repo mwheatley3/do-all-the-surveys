@@ -6,5 +6,5 @@
 		<input type="radio" ng-model="$parent.userResponse" ng-value="a" id={{a}}>
 		<br>
 	</div>
-	<button>Save Answer</button>
+	<button ng-show="questionId">Save Answer</button>
 </form>

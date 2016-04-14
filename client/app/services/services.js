@@ -13,7 +13,7 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error){
-      console.log('Error posting question', error);
+      console.error('Error posting question', error);
     });
   };
 
@@ -26,7 +26,7 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error) {
-      console.log('Error getting question', error);
+      console.error('Error getting question', error);
     });
   };
 
@@ -40,7 +40,7 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error) {
-      console.log('Error creating user', error);
+      console.error('Error creating user', error);
     });    
   }
 
@@ -54,12 +54,11 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error) {
-      console.log('Error saving response', error);
+      console.error('Error saving response', error);
     })
   };
 
   service.getResponses = function() {
-    console.log('service get responses');
     return $http({
       method: 'GET',
       url: '/admin/response'
@@ -68,7 +67,7 @@ angular.module('myApp.services',[])
       return res.data;
     })
     .catch(function(error) {
-      console.log('Error saving response', error);
+      console.error('Error saving response', error);
     })
   };
 	
@@ -106,7 +105,6 @@ angular.module('myApp.services',[])
       data: admin
     })
     .then(function(res) {
-      console.log('CREat admin service')
       return res.data;
     })
     .catch(function(error) {

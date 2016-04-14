@@ -2,7 +2,7 @@
 
 Survey App with admin page to create survey questions and answers
 
-inspiration for project layout: https://github.com/sequelize/express-example
+Inspiration for project layout: https://github.com/sequelize/express-example
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ This app is designed for an admin to be able to enter a question with any number
 
 ### Notes
 
-1. In order for this application to run you must have a mysql database server running and have entered the credentials and DB information in config/config.json
+1. In order for this application to run you must have a MySQL database server running and have entered the credentials and DB information in config/config.json
 
 2. The app is currently being hosted here: https://e-honda-takes-a-survey.herokuapp.com/#/
 

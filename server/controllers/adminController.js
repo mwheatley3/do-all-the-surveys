@@ -52,7 +52,7 @@ AdminController.login = function(req, res) {
 	})
 	.catch(function(resp) {
 		res.send({error: resp});
-		console.log('login catch', resp);
+		console.error('login catch', resp);
 	});
 };
 

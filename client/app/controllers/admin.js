@@ -3,6 +3,7 @@
 angular.module('myApp.admin', [])
   .controller('AdminCtrl', ['$scope','$http','$location','$state','Service','Auth', function($scope,$http,$location,$state,Service, Auth) {
     $scope.questions = [];
+    $scope.questionSubmitted = false;
     $scope.admin = {
       username: '',
       password: ''      
@@ -39,7 +40,13 @@ angular.module('myApp.admin', [])
       };
       Service.saveQuestion($scope.question, $scope.answers)
       .then(function(resp) {
-        $state.reload();
+        $scope.questionSubmitted = true;
+        $scope.question = '';
+        $scope.answers = [{
+            answerText: ''
+          }, {
+            answerText: ''
+        }];
       })
       .catch(function(error) {
         console.error(error);

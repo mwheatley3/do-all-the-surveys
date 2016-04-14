@@ -17,12 +17,14 @@ Now visit [localhost:4000](http://localhost:4000/)
 
 ## Overview
 
-This app uses Highcharts in order to provide a visual component to the volunteering data that is being collected by Give Pulse.  As of 4/11/2016 the application has 2 graphs.  The first graph shows the type of organizations that have volunteers and the number of hours that each organization’s members have volunteered.  The second graph displays the discrepancy between the types of skills that are needed at volunteering events and the skills that the volunteers posses.
+This app is designed for an admin to be able to enter a question with any number of possible responses.  Then when a guest visits the site they will be presented with a random survey question to answer.  When they answer the question they will receive another random question.  This will continue until the guest is bored of answering questions or until all questions have been answered.  There is also a protected admin interface where an admin can spawn more admins and view the responses to his or her posted survey questions. The site is responsive and can be viewed on a mobile device.
 
 ### Notes
 
-1. In order for this application to run you must have a mysql database running with the givepulse_test DB populated
+1. In order for this application to run you must have a mysql database server running and have entered the credentials and DB information in config/config.json
 
-2. The app is currently being hosted here: https://give-pulse.herokuapp.com/#/
+2. The app is currently being hosted here: https://e-honda-takes-a-survey.herokuapp.com/#/
 
-3. This app was built using Angular, HighCharts, Node, Express, and MySQL
+3. The DB is seeded with 1 admin. username: 123 password: 123
+
+4. This app was built using Angular, Node, Express, MySQL, and Sequelize.

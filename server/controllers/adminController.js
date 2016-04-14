@@ -52,7 +52,6 @@ AdminController.login = function(req, res) {
 	})
 	.catch(function(resp) {
 		res.send({error: resp});
-		console.error('login catch', resp);
 	});
 };
 
@@ -67,7 +66,7 @@ AdminController.createAdmin = function(req, res) {
 		res.sendStatus(200);
 	})
 	.catch(function(err) {
-		console.error('error creating new admin: ', err);
+		res.send({error: resp});
 	});
 };
 //seed database with 123 user

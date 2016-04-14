@@ -67,7 +67,6 @@ angular.module('myApp.admin', [])
         $scope.admin.username = '';
         $scope.admin.password = '';
         $scope.adminCreated = true;
-        console.log('admin created');
       })
       .catch(function(error) {
         console.error(error);

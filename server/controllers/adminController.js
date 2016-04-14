@@ -64,19 +64,17 @@ AdminController.createAdmin = function(req, res) {
 		password: password
 	})
 	.then(function(resp) {
-		res.send(200);
+		res.sendStatus(200);
 	})
 	.catch(function(err) {
 		console.error('error creating new admin: ', err);
 	});
 };
-//***************SEED DATABASE******************//
+//seed database with 123 user
 var seedPassword = bcrypt.hashSync( '123', bcrypt.genSaltSync(10) );
 models.Admin.upsert({
 	username: '123',
 	password: seedPassword
-}).then(function(seed) {
-	console.log('seed', seed);
 });
 
 module.exports = AdminController;
